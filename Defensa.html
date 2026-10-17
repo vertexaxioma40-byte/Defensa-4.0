@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERTEX AXIOMA® | Auditoría de Defensa y Activos Estratégicos 4.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 font-sans p-6 min-h-screen flex flex-col justify-between">
+
+    <div class="max-w-4xl mx-auto space-y-6 w-full">
+        <!-- Encabezado Institucional -->
+        <div class="border-b border-slate-700 pb-4 flex justify-between items-center">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-mono">🛡️ Sello de Inmutabilidad Transfronteriza</span>
+                <h1 class="text-2xl font-bold text-white mt-1">Defensa & Activos Estratégicos 4.0</h1>
+                <p class="text-xs text-slate-400">Trazabilidad inmutable de pertrechos, cadena de custodia y control criptográfico de inventario táctico.</p>
+            </div>
+            <span class="bg-amber-950/60 text-amber-300 text-xs px-3 py-1 rounded-full border border-amber-500/30 font-mono">
+                CUSTODIA CERO-FILTRACIÓN
+            </span>
+        </div>
+
+        <!-- ACTO I: Captura de Micro-Átomo de Material Táctico -->
+        <div class="bg-[#111827] p-5 rounded-lg border border-slate-800 space-y-4 shadow-lg">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-amber-400">1. Ingesta Telemática de Material Crítico (Micro-Átomo)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">ID Serial / Lote de Pertrecho</label>
+                    <input id="serial_tactico" type="text" value="ARM-DEF-2026-9948" class="w-full bg-[#0b0f19] border border-slate-700 rounded p-2 text-slate-200 font-mono text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Nodo de Custodia Militar</label>
+                    <input id="nodo_custodia" type="text" value="NODO_MARCOS_PAZ_SECURE" class="w-full bg-[#0b0f19] border border-slate-700 rounded p-2 text-slate-200 font-mono text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Geolocalización GPS</label>
+                    <input id="gps_coords" type="text" value="-34.6541, -58.6210" class="w-full bg-[#0b0f19] border border-slate-700 rounded p-2 text-slate-200 font-mono text-xs">
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3 pt-2">
+                <button onclick="generarAtomoTactico()" class="bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded transition shadow">
+                    📡 Generar Micro-Átomo Inalterable (SHA-256)
+                </button>
+            </div>
+
+            <div id="atomo_resultado" class="hidden bg-[#0b0f19] p-3 rounded border border-slate-800 font-mono text-xs space-y-1">
+                <p class="text-slate-400">> Hash Atómico Generado:</p>
+                <p id="hash_atomico_txt" class="text-amber-400 break-all"></p>
+            </div>
+        </div>
+
+        <!-- ACTO II: Simulación de Alteración y Prueba Petrificada -->
+        <div class="bg-[#111827] p-5 rounded-lg border border-slate-800 space-y-4 shadow-lg">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-amber-400">2. Prueba Petrificada & Tribunal Tecnológico</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-3">
+                    <button onclick="petrificarLote()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-xs py-2 px-3 rounded transition text-left flex justify-between items-center">
+                        <span>🧱 Petrificar Estado en Ledger Inmutable</span>
+                        <span id="estado_petrificado" class="text-slate-500 font-mono text-[10px]">PENDIENTE</span>
+                    </button>
+                    <button id="btn_fraude" onclick="simularAlteracion()" disabled class="w-full bg-slate-900 text-slate-600 border border-slate-800 font-medium text-xs py-2 px-3 rounded transition text-left flex justify-between items-center cursor-not-allowed">
+                        <span>⚠️ Simular Alteración de Inventario (Fuga/Fraude)</span>
+                        <span class="font-mono text-[10px]">BLOQUEADO</span>
+                    </button>
+                </div>
+
+                <div class="bg-[#0b0f19] p-3 rounded border border-slate-800 font-mono text-xs space-y-2 flex flex-col justify-between">
+                    <div>
+                        <p class="text-slate-400 mb-1">Veredicto de Integridad:</p>
+                        <div id="veredicto_badge" class="px-2 py-1 rounded text-center font-bold bg-slate-800 text-slate-400 text-xs">
+                            SISTEMA EN ESPERA
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-[10px]">Raíz de Merkle / Root Hash:</p>
+                        <p id="merkle_display" class="text-slate-400 break-all text-[10px]">----------------------------------------</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="location.reload()" class="text-xs text-slate-400 hover:text-slate-200 underline">
+                    Reiniciar Consola de Pruebas
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-slate-500 text-xs border-t border-slate-800 pt-4 mt-8">
+        VERTEX AXIOMA® S.A.S. — Sello de Conformidad Fiscal y Custodia Estratégica 4.0
+    </footer>
+
+    <script>
+        let payloadActual = "";
+        let hashOriginal = "";
+        let petrificado = false;
+
+        function generarAtomoTactico() {
+            const serial = document.getElementById("serial_tactico").value;
+            const nodo = document.getElementById("nodo_custodia").value;
+            const gps = document.getElementById("gps_coords").value;
+            
+            payloadActual = `${serial}|${nodo}|${gps}|${new Date().toISOString()}`;
+            hashOriginal = CryptoJS.SHA256(payloadActual).toString();
+
+            document.getElementById("atomo_resultado").classList.remove("hidden");
+            document.getElementById("hash_atomico_txt").innerText = hashOriginal;
+        }
+
+        function petrificarLote() {
+            if (!hashOriginal) {
+                alert("Primero debe generar el Micro-Átomo telemático.");
+                return;
+            }
+            petrificado = true;
+            document.getElementById("estado_petrificado").innerText = "PETRIFICADO";
+            document.getElementById("estado_petrificado").className = "text-emerald-400 font-mono text-[10px] font-bold";
+            
+            const merkleRoot = CryptoJS.SHA256(hashOriginal + "_MERKLE_ROOT").toString();
+            document.getElementById("merkle_display").innerText = merkleRoot;
+            document.getElementById("merkle_display").className = "text-amber-400 break-all text-[10px]";
+
+            const badge = document.getElementById("veredicto_badge");
+            badge.innerText = "ESTADO: PETRIFICADO_E_INTACTO";
+            badge.className = "px-2 py-1 rounded text-center font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/50 text-xs";
+
+            const btnFraude = document.getElementById("btn_fraude");
+            btnFraude.disabled = false;
+            btnFraude.className = "w-full bg-red-950/30 hover:bg-red-900/40 text-red-300 border border-red-500/50 font-medium text-xs py-2 px-3 rounded transition text-left flex justify-between items-center cursor-pointer";
+            btnFraude.querySelector("span:last-child").innerText = "LISTO PARA TEST";
+        }
+
+        function simularAlteracion() {
+            if (!petrificado) return;
+
+            // Simulamos corrupción de un byte en el hash o registro
+            const merkleCorrompido = CryptoJS.SHA256(hashOriginal + "_ALTERADO_MALICIOSO").toString();
+            document.getElementById("merkle_display").innerText = merkleCorrompido;
+            document.getElementById("merkle_display").className = "text-red-400 break-all text-[10px]";
+
+            const badge = document.getElementById("veredicto_badge");
+            badge.innerText = "🚨 ALERTA ROJA: EVIDENCIA CORROMPIDA";
+            badge.className = "px-2 py-1 rounded text-center font-bold bg-red-950/80 text-red-200 border border-red-500/80 text-xs animate-pulse";
+        }
+    </script>
+</body>
+</html>
